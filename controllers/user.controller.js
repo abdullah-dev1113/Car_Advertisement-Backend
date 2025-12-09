@@ -103,7 +103,9 @@ class userhandler {
       return res.status(404).json({ msg: "user is not created" });
 
     // SEND OTP after signup
-    await axios.post("http://localhost:5000/api/v1/otp/send", {
+    //http://localhost:5000/api/v1/otp/send
+    
+    await axios.post("https://car-advertisement-backend.onrender.com/api/v1/otp/send", {
       email: created.email,
     });
 
