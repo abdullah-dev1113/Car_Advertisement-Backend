@@ -45,8 +45,9 @@ class userhandler {
 
     // If NOT verified → Send OTP
     if (!currentUser.isVerified) {
-
-      await axios.post("http://localhost:5000/api/v1/otp/send", {
+      
+      //http://localhost:5000/api/v1/otp/send
+      await axios.post("https://car-advertisement-backend.onrender.com/api/v1/otp/send", {
         email: currentUser.email,
       });
 

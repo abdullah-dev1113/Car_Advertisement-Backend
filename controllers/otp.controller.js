@@ -38,7 +38,7 @@ exports.sendOtp = async (req, res) => {
 
     // Email send
     await transporter.sendMail({
-      from: `"Auth System" <${process.env.EMAIL_USER}>`,
+      from: `"Car_Advertisement Email Verification" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Your OTP Code",
       html: `
