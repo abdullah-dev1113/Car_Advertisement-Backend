@@ -31,6 +31,6 @@ ConnectDb().then(() => {
     });
 }).catch(err => console.log(err));
 
-app.listen(port, "0.0.0.0", () => {
-    console.log(`server is running on port ${port}`);
-});
+// app.listen(port, "0.0.0.0", () => {
+//     console.log(`server is running on port ${port}`);
+// });
