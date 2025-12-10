@@ -25,11 +25,11 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/task", taskRouter);
 app.use("/api/v1/otp", otpRouter);
 
-// ConnectDb().then(() => {
-//     app.listen(port, () => {
-//         console.log(`server is ready on http://${host}:${port}`);
-//     });
-// }).catch(err => console.log(err));
+ConnectDb().then(() => {
+    app.listen(port, () => {
+        console.log(`server is ready on http://${host}:${port}`);
+    });
+}).catch(err => console.log(err));
 
 app.listen(port, "0.0.0.0", () => {
     console.log(`server is running on port ${port}`);
