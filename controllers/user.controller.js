@@ -249,17 +249,22 @@ class userhandler {
 
             // If NOT verified → send OTP
             if (!currentUser.isVerified) {
-                await sendOtp(
-                    { body: { email: currentUser.email } },
-                    { json: () => {} } // dummy response
-                );
+  try {
+    await sendOtp(
+      { body: { email: currentUser.email } },
+      { json: () => {} }
+    );
+  } catch (otpError) {
+    console.error("OTP SEND FAILED (LOGIN):", otpError.message);
+  }
 
-                return res.json({
-                    sendOtp: true,
-                    email: currentUser.email,
-                    message: "Please verify your email. OTP Sent!"
-                });
-            }
+  return res.json({
+    sendOtp: true,
+    email: currentUser.email,
+    message: "Please verify your email. OTP Sent!"
+  });
+}
+
 
             // Generate token
             const token = jwt.sign(
