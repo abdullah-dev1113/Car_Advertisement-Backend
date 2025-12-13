@@ -198,6 +198,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Role = require("../Models/roles.model");
 const { sendOtp } = require("./otp.controller"); // DIRECT CALL, NO HTTP
+const { sendOtpService } = require("../utilities/otp.service");
 require("dotenv").config();
 
 class userhandler {
@@ -250,10 +251,7 @@ class userhandler {
             // If NOT verified → send OTP
             if (!currentUser.isVerified) {
   try {
-    await sendOtp(
-      { body: { email: currentUser.email } },
-      { json: () => {} }
-    );
+    await sendOtpService(currentUser.email);
   } catch (otpError) {
     console.error("OTP SEND FAILED (LOGIN):", otpError.message);
   }
@@ -308,10 +306,7 @@ class userhandler {
             });
 
             // Send OTP (direct controller call)
-            await sendOtp(
-                { body: { email: created.email } },
-                { json: () => {} }
-            );
+            await sendOtpService(created.email);
 
             return res.status(200).json({
                 success: true,
