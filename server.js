@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 const express = require("express");
 const path = require("path");
 const app = new express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "https://car-advertisement-frontend.onrender.com",
+  credentials: true
+}));
 const ConnectDb = require("./utilities/db.util");
 const roleRouter = require("./routes/role.route");
 const statusRouter = require("./routes/status.route");
